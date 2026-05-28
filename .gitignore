@@ -1,0 +1,10 @@
+node_modules/
+client/node_modules/
+server/node_modules/
+client/dist/
+server/neptune.db
+server/neptune.db-shm
+server/neptune.db-wal
+server/.env
+.DS_Store
+.claude/

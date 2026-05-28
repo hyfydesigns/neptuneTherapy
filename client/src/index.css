@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neptune-50: #eff8ff;
+  --color-neptune-100: #dbeffe;
+  --color-neptune-200: #bfe3fe;
+  --color-neptune-300: #92d1fd;
+  --color-neptune-400: #5fb5fa;
+  --color-neptune-500: #3895f5;
+  --color-neptune-600: #1d72ea;
+  --color-neptune-700: #1a5dd8;
+  --color-neptune-800: #1c4daf;
+  --color-neptune-900: #1c4289;
+  --color-neptune-950: #162953;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #1e293b;
+    background: #ffffff;
+  }
+  #root {
+    width: 100%;
+    min-height: 100vh;
+  }
+}
+
+/* ── Keyframes ──────────────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeRight {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes heroText {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Utility animation classes ──────────────────────────────────────────────── */
+.anim-fade-up {
+  opacity: 0;
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translateY(28px);
+}
+.anim-fade-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-fade-left {
+  opacity: 0;
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translateX(-28px);
+}
+.anim-fade-left.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.anim-fade-right {
+  opacity: 0;
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translateX(28px);
+}
+.anim-fade-right.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.anim-scale-in {
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: scale(0.94);
+}
+.anim-scale-in.in-view {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger delays for grid children */
+.anim-stagger > *:nth-child(1) { transition-delay: 0ms; }
+.anim-stagger > *:nth-child(2) { transition-delay: 80ms; }
+.anim-stagger > *:nth-child(3) { transition-delay: 160ms; }
+.anim-stagger > *:nth-child(4) { transition-delay: 240ms; }
+.anim-stagger > *:nth-child(5) { transition-delay: 320ms; }
+.anim-stagger > *:nth-child(6) { transition-delay: 400ms; }
+
+/* When the stagger wrapper is in-view, reveal all animated children */
+.anim-stagger.in-view > .anim-fade-up   { opacity: 1; transform: translateY(0); }
+.anim-stagger.in-view > .anim-fade-left { opacity: 1; transform: translateX(0); }
+.anim-stagger.in-view > .anim-fade-right{ opacity: 1; transform: translateX(0); }
+.anim-stagger.in-view > .anim-scale-in  { opacity: 1; transform: scale(1); }
+
+/* ── Hero entrance (immediate, CSS-only, no JS needed) ──────────────────────── */
+.hero-badge  { animation: heroText 0.6s ease 0.1s both; }
+.hero-title  { animation: heroText 0.7s ease 0.25s both; }
+.hero-sub    { animation: heroText 0.7s ease 0.4s both; }
+.hero-ctas   { animation: heroText 0.7s ease 0.55s both; }
+.hero-photo  { animation: fadeIn  0.9s ease 0.3s  both; }
