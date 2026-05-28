@@ -1,6 +1,14 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const db = require('./db');
+
+// Auto-seed on first run (when content table is empty)
+const rowCount = db.prepare('SELECT COUNT(*) as n FROM site_content').get().n;
+if (rowCount === 0) {
+  console.log('🌱 Empty database detected — seeding default content...');
+  require('./seed');
+}
 
 const app = express();
 
