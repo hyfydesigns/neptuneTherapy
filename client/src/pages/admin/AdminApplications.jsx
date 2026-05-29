@@ -75,7 +75,10 @@ export default function AdminApplications() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get('/applications').then(r => { setApplications(r.data); setLoading(false); });
+    api.get('/applications')
+      .then(r => setApplications(r.data))
+      .catch(err => console.error('Failed to load applications', err))
+      .finally(() => setLoading(false));
   }, []);
 
   const handleStatusChange = async (id, status) => {

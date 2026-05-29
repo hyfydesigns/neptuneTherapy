@@ -9,7 +9,10 @@ export default function AdminMessages() {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    api.get('/contact').then(r => { setMessages(r.data); setLoading(false); });
+    api.get('/contact')
+      .then(r => setMessages(r.data))
+      .catch(err => console.error('Failed to load messages', err))
+      .finally(() => setLoading(false));
   }, []);
 
   const handleDelete = async (id) => {
