@@ -21,6 +21,29 @@ app.use('/api/contact', require('./routes/contact'));
 app.use('/api/applications', require('./routes/applications'));
 app.use('/sitemap.xml', require('./routes/sitemap'));
 
+// Temporary: test SMTP connection — remove after confirming email works
+app.get('/api/test-email', async (_, res) => {
+  try {
+    const nodemailer = require('nodemailer');
+    const t = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT || '465'),
+      secure: parseInt(process.env.SMTP_PORT || '465') === 465,
+      auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+    });
+    await t.verify();
+    await t.sendMail({
+      from: `"Neptune Therapy" <${process.env.SMTP_USER}>`,
+      to: process.env.NOTIFY_EMAIL,
+      subject: 'Neptune Therapy — SMTP Test',
+      text: 'SMTP is working correctly on Railway.',
+    });
+    res.json({ success: true, message: `Test email sent to ${process.env.NOTIFY_EMAIL}` });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 app.get('/api/health', (_, res) => {
   const smtpUser = process.env.SMTP_USER || '';
   res.json({
