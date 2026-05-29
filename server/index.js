@@ -27,8 +27,8 @@ app.get('/api/test-email', async (_, res) => {
     const nodemailer = require('nodemailer');
     const t = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT || '465'),
-      secure: parseInt(process.env.SMTP_PORT || '465') === 465,
+      port: 587,
+      secure: false,
       auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
     });
     await t.verify();
