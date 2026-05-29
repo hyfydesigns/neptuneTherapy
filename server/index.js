@@ -21,22 +21,6 @@ app.use('/api/contact', require('./routes/contact'));
 app.use('/api/applications', require('./routes/applications'));
 app.use('/sitemap.xml', require('./routes/sitemap'));
 
-// Temporary: test Resend email — remove after confirming email works
-app.get('/api/test-email', async (_, res) => {
-  try {
-    const { Resend } = require('resend');
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    const result = await resend.emails.send({
-      from: process.env.FROM_EMAIL || 'Neptune Therapy <onboarding@resend.dev>',
-      to: process.env.NOTIFY_EMAIL,
-      subject: 'Neptune Therapy — Email Test',
-      text: 'Resend is working correctly on Railway!',
-    });
-    res.json({ success: true, message: `Test email sent to ${process.env.NOTIFY_EMAIL}`, id: result.data?.id });
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
 
 app.get('/api/health', (_, res) => {
   const apiKey = process.env.RESEND_API_KEY || '';
