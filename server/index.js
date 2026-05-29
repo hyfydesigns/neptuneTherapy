@@ -21,38 +21,30 @@ app.use('/api/contact', require('./routes/contact'));
 app.use('/api/applications', require('./routes/applications'));
 app.use('/sitemap.xml', require('./routes/sitemap'));
 
-// Temporary: test SMTP connection — remove after confirming email works
+// Temporary: test Resend email — remove after confirming email works
 app.get('/api/test-email', async (_, res) => {
   try {
-    const nodemailer = require('nodemailer');
-    const t = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: 587,
-      secure: false,
-      auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
-    });
-    await t.verify();
-    await t.sendMail({
-      from: `"Neptune Therapy" <${process.env.SMTP_USER}>`,
+    const { Resend } = require('resend');
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const result = await resend.emails.send({
+      from: process.env.FROM_EMAIL || 'Neptune Therapy <onboarding@resend.dev>',
       to: process.env.NOTIFY_EMAIL,
-      subject: 'Neptune Therapy — SMTP Test',
-      text: 'SMTP is working correctly on Railway.',
+      subject: 'Neptune Therapy — Email Test',
+      text: 'Resend is working correctly on Railway!',
     });
-    res.json({ success: true, message: `Test email sent to ${process.env.NOTIFY_EMAIL}` });
+    res.json({ success: true, message: `Test email sent to ${process.env.NOTIFY_EMAIL}`, id: result.data?.id });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
 });
 
 app.get('/api/health', (_, res) => {
-  const smtpUser = process.env.SMTP_USER || '';
+  const apiKey = process.env.RESEND_API_KEY || '';
   res.json({
     status: 'ok',
-    smtp: {
-      configured: !!(smtpUser && !smtpUser.startsWith('your_')),
-      host: process.env.SMTP_HOST || '(not set)',
-      port: process.env.SMTP_PORT || '(not set)',
-      user: smtpUser ? smtpUser.replace(/(.{3}).*(@.*)/, '$1***$2') : '(not set)',
+    email: {
+      provider: 'Resend',
+      configured: !!(apiKey && apiKey.startsWith('re_')),
       notifyEmail: process.env.NOTIFY_EMAIL || '(not set)',
     },
   });
