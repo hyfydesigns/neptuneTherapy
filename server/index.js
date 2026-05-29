@@ -21,7 +21,19 @@ app.use('/api/contact', require('./routes/contact'));
 app.use('/api/applications', require('./routes/applications'));
 app.use('/sitemap.xml', require('./routes/sitemap'));
 
-app.get('/api/health', (_, res) => res.json({ status: 'ok' }));
+app.get('/api/health', (_, res) => {
+  const smtpUser = process.env.SMTP_USER || '';
+  res.json({
+    status: 'ok',
+    smtp: {
+      configured: !!(smtpUser && !smtpUser.startsWith('your_')),
+      host: process.env.SMTP_HOST || '(not set)',
+      port: process.env.SMTP_PORT || '(not set)',
+      user: smtpUser ? smtpUser.replace(/(.{3}).*(@.*)/, '$1***$2') : '(not set)',
+      notifyEmail: process.env.NOTIFY_EMAIL || '(not set)',
+    },
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Neptune API running on http://localhost:${PORT}`));
