@@ -4,6 +4,7 @@ import { useContent } from '../context/ContentContext';
 import SEO from '../components/SEO';
 import JsonLd from '../components/JsonLd';
 import Animate from '../components/Animate';
+import SERVICES from '../data/servicesData';
 
 const LOCAL_BUSINESS_SCHEMA = {
   '@context': 'https://schema.org',
@@ -125,15 +126,26 @@ export default function HomePage() {
             </p>
           </Animate>
           <Animate stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(services.items || []).map((item, i) => (
-              <div key={i} className="anim-fade-up group bg-gray-50 hover:bg-blue-50 border border-gray-100 hover:border-blue-200 rounded-2xl p-6 transition-all hover:-translate-y-1 hover:shadow-md">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
-                  <ServiceIcon name={item.icon} />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
-              </div>
-            ))}
+            {(services.items || []).map((item, i) => {
+              const serviceData = SERVICES.find(s => s.title === item.title);
+              const slug = serviceData?.slug;
+              return (
+                <Link
+                  key={i}
+                  to={slug ? `/services/${slug}` : '#'}
+                  className="anim-fade-up group bg-gray-50 hover:bg-blue-50 border border-gray-100 hover:border-blue-200 rounded-2xl p-6 transition-all hover:-translate-y-1 hover:shadow-md"
+                >
+                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
+                    <ServiceIcon name={item.icon} />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-3">{item.description}</p>
+                  <span className="inline-flex items-center gap-1 text-blue-600 text-xs font-semibold group-hover:gap-2 transition-all">
+                    Learn more <ArrowRight size={12} />
+                  </span>
+                </Link>
+              );
+            })}
           </Animate>
         </div>
       </section>

@@ -9,6 +9,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import ApplyPage from './pages/ApplyPage';
 
+import ServiceDetailPage from './pages/ServiceDetailPage';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminContent from './pages/admin/AdminContent';
@@ -35,6 +36,7 @@ export default function App() {
               <Route path="/about" element={<Layout><AboutPage /></Layout>} />
               <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
               <Route path="/apply" element={<Layout><ApplyPage /></Layout>} />
+              <Route path="/services/:slug" element={<Layout><ServiceDetailPage /></Layout>} />
 
               {/* Admin — noindex */}
               <Route path="/admin" element={<AdminLogin />} />
