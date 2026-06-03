@@ -1,7 +1,13 @@
 const Database = require('better-sqlite3');
 const path = require('path');
+const fs = require('fs');
 
-const db = new Database(path.join(__dirname, 'neptune.db'));
+// In production (Railway), use a mounted volume at /data so the DB
+// survives redeploys. Locally, keep it next to the server files.
+const dbDir = process.env.DB_DIR || __dirname;
+if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir, { recursive: true });
+
+const db = new Database(path.join(dbDir, 'neptune.db'));
 
 db.pragma('journal_mode = WAL');
 db.pragma('foreign_keys = ON');
