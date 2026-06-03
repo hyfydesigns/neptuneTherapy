@@ -70,7 +70,7 @@ const defaultContent = {
     ],
     perks: [
       'Quarterly performance & loyalty bonuses',
-      '$200 referral bonus per licensed hire',
+      'Referral bonus per licensed hire',
       'Flexible schedule — you set your own hours',
       'Choose your own caseload and coverage area',
       'Be part of a supportive professional community',
