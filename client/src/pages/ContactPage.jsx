@@ -99,7 +99,7 @@ export default function ContactPage() {
               </div>
 
               <div className="mt-10 p-6 bg-blue-50 rounded-2xl">
-                <h3 className="font-semibold text-gray-900 mb-2">Looking to apply?</h3>
+                <h3 className="card-title mb-2">Looking to apply?</h3>
                 <p className="text-gray-600 text-sm mb-4">
                   If you're a licensed PT, OT, or SLP interested in joining our network, fill out our full application form.
                 </p>

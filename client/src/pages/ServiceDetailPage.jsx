@@ -112,7 +112,7 @@ export default function ServiceDetailPage() {
                   {i + 1}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">{item.step}</h3>
+                  <h3 className="card-title mb-1">{item.step}</h3>
                   <p className="card-body">{item.detail}</p>
                 </div>
               </div>

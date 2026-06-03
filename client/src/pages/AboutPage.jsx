@@ -82,7 +82,7 @@ export default function AboutPage() {
                   <div className="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Icon size={24} className="text-blue-600" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{val.title}</h3>
+                  <h3 className="text-lg card-title mb-2">{val.title}</h3>
                   <p className="card-body">{val.description}</p>
                 </div>
               );
@@ -123,7 +123,7 @@ export default function AboutPage() {
               </div>
 
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl p-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Roles & Responsibilities</h3>
+                <h3 className="text-xl card-title mb-2">Roles & Responsibilities</h3>
                 <p className="text-gray-600 text-sm mb-6">As an independent contractor with Neptune Therapy, you will:</p>
                 <ul className="space-y-3">
                   {[

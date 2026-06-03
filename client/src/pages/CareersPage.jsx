@@ -67,7 +67,7 @@ export default function CareersPage() {
                 <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
                   <Icon size={22} className="text-blue-600" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
+                <h3 className="card-title mb-2">{title}</h3>
                 <p className="card-body">{desc}</p>
               </div>
             ))}
@@ -112,7 +112,7 @@ export default function CareersPage() {
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 h-full">
                 <div className="flex items-center gap-2 mb-6">
                   <Star size={20} className="text-yellow-500" />
-                  <h3 className="text-xl font-bold text-gray-900">Perks & Benefits</h3>
+                  <h3 className="text-xl card-title">Perks & Benefits</h3>
                 </div>
                 <ul className="space-y-3">
                   {(employment.perks || []).map((perk, i) => (

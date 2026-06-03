@@ -138,7 +138,7 @@ export default function HomePage() {
                   <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
                     <ServiceIcon name={item.icon} />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
+                  <h3 className="text-lg card-title mb-2">{item.title}</h3>
                   <p className="card-body mb-3">{item.description}</p>
                   <span className="inline-flex items-center gap-1 text-blue-600 text-xs font-semibold group-hover:gap-2 transition-all">
                     Learn more <ArrowRight size={12} />
@@ -227,7 +227,7 @@ export default function HomePage() {
                   <div className="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center">
                     <DollarSign size={20} className="text-amber-600" />
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900">Competitive Compensation</h3>
+                  <h3 className="text-lg card-title">Competitive Compensation</h3>
                 </div>
                 <p className="card-body">
                   We offer some of the best per-visit rates in Texas home health — with quarterly bonuses, referral incentives, and a flexible independent contractor structure that puts you in control.
