@@ -139,7 +139,7 @@ export default function HomePage() {
                     <ServiceIcon name={item.icon} />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-3">{item.description}</p>
+                  <p className="card-body mb-3">{item.description}</p>
                   <span className="inline-flex items-center gap-1 text-blue-600 text-xs font-semibold group-hover:gap-2 transition-all">
                     Learn more <ArrowRight size={12} />
                   </span>
@@ -229,12 +229,12 @@ export default function HomePage() {
                   </div>
                   <h3 className="text-lg font-bold text-gray-900">Competitive Compensation</h3>
                 </div>
-                <p className="text-gray-500 text-sm leading-relaxed">
+                <p className="card-body">
                   We offer some of the best per-visit rates in Texas home health — with quarterly bonuses, referral incentives, and a flexible independent contractor structure that puts you in control.
                 </p>
                 <ul className="space-y-2">
                   {(employment.perks || []).slice(0, 3).map((perk, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                    <li key={i} className="flex items-start gap-2 text-base text-gray-900">
                       <CheckCircle size={15} className="text-green-500 mt-0.5 shrink-0" />
                       {perk}
                     </li>

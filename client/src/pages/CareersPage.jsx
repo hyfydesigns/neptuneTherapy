@@ -68,7 +68,7 @@ export default function CareersPage() {
                   <Icon size={22} className="text-blue-600" />
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                <p className="card-body">{desc}</p>
               </div>
             ))}
           </Animate>

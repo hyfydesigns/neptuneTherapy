@@ -91,7 +91,7 @@ export default function ServiceDetailPage() {
                 <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
                   <CheckCircle size={20} className="text-blue-600" />
                 </div>
-                <p className="text-gray-700 text-sm leading-relaxed font-medium">{benefit}</p>
+                <p className="card-body font-medium">{benefit}</p>
               </div>
             ))}
           </Animate>
@@ -113,7 +113,7 @@ export default function ServiceDetailPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-1">{item.step}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{item.detail}</p>
+                  <p className="card-body">{item.detail}</p>
                 </div>
               </div>
             ))}

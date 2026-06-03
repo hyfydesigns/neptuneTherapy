@@ -83,7 +83,7 @@ export default function AboutPage() {
                     <Icon size={24} className="text-blue-600" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{val.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{val.description}</p>
+                  <p className="card-body">{val.description}</p>
                 </div>
               );
             })}

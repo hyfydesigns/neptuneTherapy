@@ -32,6 +32,22 @@
   }
 }
 
+/* ── Global readability — darken grey text for better contrast ──────────────── */
+@layer utilities {
+  .text-gray-400 { color: #4b5563; } /* → gray-600 */
+  .text-gray-500 { color: #1f2937; } /* → gray-800 */
+  .text-gray-600 { color: #111827; } /* → gray-900 */
+}
+
+/* ── Card text — bump sm to base for legibility ─────────────────────────────── */
+@layer utilities {
+  .card-body {
+    font-size: 1rem;       /* 16px */
+    line-height: 1.75;
+    color: #111827;
+  }
+}
+
 /* ── Keyframes ──────────────────────────────────────────────────────────────── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(28px); }
