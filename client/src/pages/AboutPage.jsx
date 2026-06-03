@@ -1,5 +1,12 @@
 import { Link } from 'react-router-dom';
 import { Heart, Shield, Users, Award, CheckCircle } from 'lucide-react';
+
+const CARD_GRADIENTS = [
+  'from-blue-500 to-blue-700',
+  'from-violet-600 to-purple-900',
+  'from-amber-400 to-orange-500',
+  'from-blue-600 to-violet-700',
+];
 import { useContent } from '../context/ContentContext';
 import SEO from '../components/SEO';
 import Animate from '../components/Animate';
@@ -78,9 +85,9 @@ export default function AboutPage() {
             {(about.values || []).map((val, i) => {
               const Icon = VALUE_ICONS[i % VALUE_ICONS.length];
               return (
-                <div key={i} className="anim-fade-up bg-white rounded-2xl border border-gray-100 p-6 text-center shadow-sm hover:-translate-y-1 hover:shadow-md transition-all">
-                  <div className="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon size={24} className="text-blue-600" />
+                <div key={i} className="anim-fade-up bg-white rounded-2xl border border-gray-100 p-8 text-center shadow-sm hover:-translate-y-1 hover:shadow-md transition-all flex flex-col items-center">
+                  <div className={`w-16 h-16 bg-gradient-to-br ${CARD_GRADIENTS[i % CARD_GRADIENTS.length]} rounded-2xl flex items-center justify-center mb-5 shadow-md`}>
+                    <Icon size={30} className="text-white" />
                   </div>
                   <h3 className="text-lg card-title mb-2">{val.title}</h3>
                   <p className="card-body">{val.description}</p>

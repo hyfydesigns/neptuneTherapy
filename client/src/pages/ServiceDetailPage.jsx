@@ -1,5 +1,14 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { CheckCircle, ArrowRight, ChevronRight } from 'lucide-react';
+
+const CARD_GRADIENTS = [
+  'from-blue-500 to-blue-700',
+  'from-violet-600 to-purple-900',
+  'from-amber-400 to-orange-500',
+  'from-blue-600 to-violet-700',
+  'from-orange-500 to-amber-600',
+  'from-purple-700 to-blue-600',
+];
 import SEO from '../components/SEO';
 import Animate from '../components/Animate';
 import SERVICES from '../data/servicesData';
@@ -87,9 +96,9 @@ export default function ServiceDetailPage() {
           </Animate>
           <Animate stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {service.benefits.map((benefit, i) => (
-              <div key={i} className="anim-fade-up bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all">
-                <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
-                  <CheckCircle size={20} className="text-blue-600" />
+              <div key={i} className="anim-fade-up bg-white rounded-2xl border border-gray-100 p-8 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all flex flex-col items-center text-center">
+                <div className={`w-14 h-14 bg-gradient-to-br ${CARD_GRADIENTS[i % CARD_GRADIENTS.length]} rounded-2xl flex items-center justify-center mb-5 shadow-md`}>
+                  <CheckCircle size={26} className="text-white" />
                 </div>
                 <p className="card-body font-medium">{benefit}</p>
               </div>

@@ -40,9 +40,18 @@ const ICON_MAP = {
   home: Home, activity: Activity, hand: Hand, mic: Mic, monitor: Monitor, 'file-text': FileText,
 };
 
+const CARD_GRADIENTS = [
+  'from-blue-500 to-blue-700',
+  'from-violet-600 to-purple-900',
+  'from-amber-400 to-orange-500',
+  'from-blue-600 to-violet-700',
+  'from-orange-500 to-amber-600',
+  'from-purple-700 to-blue-600',
+];
+
 function ServiceIcon({ name }) {
   const Icon = ICON_MAP[name] || Activity;
-  return <Icon size={28} className="text-blue-600" />;
+  return <Icon size={30} className="text-white" />;
 }
 
 export default function HomePage() {
@@ -133,14 +142,14 @@ export default function HomePage() {
                 <Link
                   key={i}
                   to={slug ? `/services/${slug}` : '#'}
-                  className="anim-fade-up group bg-gray-50 hover:bg-blue-50 border border-gray-100 hover:border-blue-200 rounded-2xl p-6 transition-all hover:-translate-y-1 hover:shadow-md"
+                  className="anim-fade-up group bg-white hover:bg-blue-50 border border-gray-100 hover:border-blue-200 rounded-2xl p-8 transition-all hover:-translate-y-1 hover:shadow-md flex flex-col items-center text-center"
                 >
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
+                  <div className={`w-16 h-16 bg-gradient-to-br ${CARD_GRADIENTS[i % CARD_GRADIENTS.length]} rounded-2xl flex items-center justify-center mb-5 shadow-md group-hover:scale-105 transition-transform`}>
                     <ServiceIcon name={item.icon} />
                   </div>
                   <h3 className="text-lg card-title mb-2">{item.title}</h3>
-                  <p className="card-body mb-3">{item.description}</p>
-                  <span className="inline-flex items-center gap-1 text-blue-600 text-xs font-semibold group-hover:gap-2 transition-all">
+                  <p className="card-body mb-4">{item.description}</p>
+                  <span className="inline-flex items-center gap-1 text-blue-600 text-xs font-semibold group-hover:gap-2 transition-all mt-auto">
                     Learn more <ArrowRight size={12} />
                   </span>
                 </Link>

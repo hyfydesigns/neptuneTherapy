@@ -1,5 +1,12 @@
 import { Link } from 'react-router-dom';
 import { CheckCircle, DollarSign, Star, ArrowRight, MapPin, Clock, Users, Award } from 'lucide-react';
+
+const CARD_GRADIENTS = [
+  'from-blue-500 to-blue-700',
+  'from-violet-600 to-purple-900',
+  'from-amber-400 to-orange-500',
+  'from-orange-500 to-amber-600',
+];
 import { useContent } from '../context/ContentContext';
 import SEO from '../components/SEO';
 import Animate from '../components/Animate';
@@ -62,10 +69,10 @@ export default function CareersPage() {
             </p>
           </Animate>
           <Animate stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {WHY_CARDS.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="anim-fade-up bg-slate-50 rounded-2xl p-6 border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                  <Icon size={22} className="text-blue-600" />
+            {WHY_CARDS.map(({ icon: Icon, title, desc }, i) => (
+              <div key={title} className="anim-fade-up bg-white rounded-2xl p-8 border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all flex flex-col items-center text-center">
+                <div className={`w-16 h-16 bg-gradient-to-br ${CARD_GRADIENTS[i % CARD_GRADIENTS.length]} rounded-2xl flex items-center justify-center mb-5 shadow-md`}>
+                  <Icon size={30} className="text-white" />
                 </div>
                 <h3 className="card-title mb-2">{title}</h3>
                 <p className="card-body">{desc}</p>
