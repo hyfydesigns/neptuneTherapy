@@ -174,21 +174,27 @@ export default function ServiceDetailPage() {
             <h2 className="text-2xl font-bold text-gray-900">Explore Other Services</h2>
           </Animate>
           <Animate stagger className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            {SERVICES.map(s => {
+            {SERVICES.map((s, i) => {
               const SIcon = s.icon;
               const isActive = s.slug === slug;
               return (
                 <Link
                   key={s.slug}
                   to={`/services/${s.slug}`}
-                  className={`anim-fade-up flex flex-col items-center text-center p-4 rounded-2xl border transition-all hover:-translate-y-1 ${
+                  className={`anim-fade-up flex flex-col items-center text-center p-4 rounded-2xl border transition-all hover:-translate-y-1 hover:shadow-md ${
                     isActive
-                      ? 'bg-blue-700 border-blue-700 text-white'
-                      : 'bg-gray-50 border-gray-100 text-gray-700 hover:bg-blue-50 hover:border-blue-200'
+                      ? 'bg-blue-700 border-blue-700'
+                      : 'bg-white border-gray-100 hover:border-blue-200'
                   }`}
                 >
-                  <SIcon size={22} className={isActive ? 'text-blue-200 mb-2' : 'text-blue-600 mb-2'} />
-                  <span className="text-xs font-semibold leading-tight">{s.title}</span>
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-2 ${
+                    isActive
+                      ? 'bg-white/20'
+                      : `bg-gradient-to-br ${CARD_GRADIENTS[i % CARD_GRADIENTS.length]} shadow-sm`
+                  }`}>
+                    <SIcon size={20} className="text-white" />
+                  </div>
+                  <span className={`text-xs font-semibold leading-tight ${isActive ? 'text-white' : 'text-gray-800'}`}>{s.title}</span>
                 </Link>
               );
             })}
