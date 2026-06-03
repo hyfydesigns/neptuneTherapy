@@ -19,12 +19,10 @@ router.get('/', (req, res) => {
 
 router.put('/:section', auth, (req, res) => {
   const { section } = req.params;
-  const existing = db.prepare('SELECT id FROM site_content WHERE section = ?').get(section);
-  if (!existing) return res.status(404).json({ error: 'Section not found' });
-
+  // Upsert — create if missing, update if exists
   db.prepare(
-    'UPDATE site_content SET content = ?, updated_at = CURRENT_TIMESTAMP WHERE section = ?'
-  ).run(JSON.stringify(req.body), section);
+    'INSERT INTO site_content (section, content, updated_at) VALUES (?, ?, CURRENT_TIMESTAMP) ON CONFLICT(section) DO UPDATE SET content = excluded.content, updated_at = CURRENT_TIMESTAMP'
+  ).run(section, JSON.stringify(req.body));
 
   res.json({ message: 'Content updated successfully' });
 });
