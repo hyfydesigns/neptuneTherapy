@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-purple-deep: #4c1d95;   /* secondary accent — card titles */
+  --color-purple-deep: #3b0764;   /* secondary accent — card titles */
 
   --color-neptune-50: #eff8ff;
   --color-neptune-100: #dbeffe;
@@ -49,7 +49,7 @@
     color: #111827;
   }
   .card-title {
-    color: #4c1d95;        /* deep purple secondary */
+    color: #3b0764;        /* deep purple secondary */
     font-weight: 700;
   }
 }
