@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Home, Activity, Hand, Mic, Monitor, FileText, CheckCircle, DollarSign, Star, ArrowRight } from 'lucide-react';
+import { Home, Activity, Hand, Mic, Monitor, FileText, CheckCircle, DollarSign, ArrowRight } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
 import SEO from '../components/SEO';
 import JsonLd from '../components/JsonLd';
@@ -205,47 +205,47 @@ export default function HomePage() {
                 />
               </div>
 
-              <Link
-                to="/apply"
-                className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold px-8 py-3.5 rounded-xl transition-colors text-sm"
-              >
-                Apply Now <ArrowRight size={15} />
-              </Link>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  to="/apply"
+                  className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold px-8 py-3.5 rounded-xl transition-colors text-sm"
+                >
+                  Apply Now <ArrowRight size={15} />
+                </Link>
+                <Link
+                  to="/careers"
+                  className="inline-flex items-center gap-2 border border-blue-200 text-blue-700 font-semibold px-8 py-3.5 rounded-xl hover:bg-blue-50 transition-colors text-sm"
+                >
+                  Learn More
+                </Link>
+              </div>
             </Animate>
 
-            <Animate type="fade-right" className="space-y-6 lg:pt-14">
-              {/* Compensation */}
-              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                <div className="bg-gradient-to-r from-amber-500 to-amber-400 px-6 py-4 flex items-center gap-3">
-                  <div className="w-9 h-9 bg-white/20 rounded-xl flex items-center justify-center">
-                    <DollarSign size={20} className="text-white" />
+            <Animate type="fade-right" className="lg:pt-14">
+              <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 space-y-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center">
+                    <DollarSign size={20} className="text-amber-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-white">Compensation</h3>
+                  <h3 className="text-lg font-bold text-gray-900">Competitive Compensation</h3>
                 </div>
-                <div className="px-6 py-5 space-y-3">
-                  {(employment.compensation || []).map((c, i) => (
-                    <div key={i} className="flex justify-between items-center py-3 border-b border-gray-50 last:border-0">
-                      <span className="text-sm text-gray-700 font-semibold">{c.role}</span>
-                      <span className="text-sm font-bold text-amber-700 bg-amber-50 border border-amber-100 px-3 py-1 rounded-full">{c.rate}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Perks */}
-              <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-                <div className="flex items-center gap-2 mb-4">
-                  <Star size={18} className="text-yellow-500" />
-                  <h3 className="font-semibold text-gray-900">Perks & Benefits</h3>
-                </div>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  We offer some of the best per-visit rates in Texas home health — with quarterly bonuses, referral incentives, and a flexible independent contractor structure that puts you in control.
+                </p>
                 <ul className="space-y-2">
-                  {(employment.perks || []).map((perk, i) => (
+                  {(employment.perks || []).slice(0, 3).map((perk, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
                       <CheckCircle size={15} className="text-green-500 mt-0.5 shrink-0" />
                       {perk}
                     </li>
                   ))}
                 </ul>
+                <Link
+                  to="/careers"
+                  className="inline-flex items-center gap-2 text-blue-700 font-semibold text-sm hover:gap-3 transition-all"
+                >
+                  See full compensation & benefits <ArrowRight size={14} />
+                </Link>
               </div>
             </Animate>
           </div>

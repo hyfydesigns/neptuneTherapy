@@ -10,6 +10,7 @@ import ContactPage from './pages/ContactPage';
 import ApplyPage from './pages/ApplyPage';
 
 import ServiceDetailPage from './pages/ServiceDetailPage';
+import CareersPage from './pages/CareersPage';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminContent from './pages/admin/AdminContent';
@@ -37,6 +38,7 @@ export default function App() {
               <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
               <Route path="/apply" element={<Layout><ApplyPage /></Layout>} />
               <Route path="/services/:slug" element={<Layout><ServiceDetailPage /></Layout>} />
+              <Route path="/careers" element={<Layout><CareersPage /></Layout>} />
 
               {/* Admin — noindex */}
               <Route path="/admin" element={<AdminLogin />} />

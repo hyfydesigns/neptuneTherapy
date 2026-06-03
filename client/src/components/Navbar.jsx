@@ -15,9 +15,10 @@ export default function Navbar() {
   const isServicesActive = location.pathname.startsWith('/services');
 
   const links = [
-    { to: '/',        label: 'Home' },
-    { to: '/about',   label: 'About Us' },
-    { to: '/contact', label: 'Contact Us' },
+    { to: '/',         label: 'Home' },
+    { to: '/about',    label: 'About Us' },
+    { to: '/careers',  label: 'Careers' },
+    { to: '/contact',  label: 'Contact Us' },
   ];
 
   // Keep dropdown open while moving mouse to it
