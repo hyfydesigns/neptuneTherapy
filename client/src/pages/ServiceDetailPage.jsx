@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { CheckCircle, ArrowRight, ChevronRight } from 'lucide-react';
+import { useContent } from '../context/ContentContext';
 
 const CARD_GRADIENTS = [
   'from-blue-500 to-blue-700',
@@ -15,9 +16,14 @@ import SERVICES from '../data/servicesData';
 
 export default function ServiceDetailPage() {
   const { slug } = useParams();
-  const service = SERVICES.find(s => s.slug === slug);
+  const { content } = useContent();
 
-  if (!service) return <Navigate to="/" replace />;
+  const staticService = SERVICES.find(s => s.slug === slug);
+  if (!staticService) return <Navigate to="/" replace />;
+
+  // Merge static (icon, title, image, seo) with dynamic DB content
+  const dbData = (content.services_detail || {})[slug] || {};
+  const service = { ...staticService, ...dbData };
 
   const Icon = service.icon;
   const currentIndex = SERVICES.findIndex(s => s.slug === slug);

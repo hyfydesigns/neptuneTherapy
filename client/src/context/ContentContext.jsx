@@ -64,6 +64,15 @@ const DEFAULT_CONTENT = {
     email: 'neptunehc.resources@yahoo.com',
     address: 'Houston, TX',
   },
+  services_detail: {},   // populated from DB; ServiceDetailPage falls back to servicesData.js
+  careers: {
+    whyCards: [
+      { title: 'Flexible Schedule',  desc: 'Set your own hours and manage your own caseload. Work as much or as little as fits your life.' },
+      { title: 'Statewide Reach',    desc: 'Serve patients across Texas with opportunities in both urban and rural communities.' },
+      { title: 'Supportive Network', desc: 'Join a community of like-minded clinicians with a dedicated admin team handling logistics.' },
+      { title: 'Competitive Pay',    desc: 'Among the best per-visit rates in Texas home health, paid promptly and transparently.' },
+    ],
+  },
 };
 
 export function ContentProvider({ children }) {

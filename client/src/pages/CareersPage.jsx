@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
 import { CheckCircle, DollarSign, Star, ArrowRight, MapPin, Clock, Users, Award } from 'lucide-react';
+import { useContent } from '../context/ContentContext';
+import SEO from '../components/SEO';
+import Animate from '../components/Animate';
 
 const CARD_GRADIENTS = [
   'from-blue-500 to-blue-700',
@@ -7,15 +10,15 @@ const CARD_GRADIENTS = [
   'from-amber-400 to-orange-500',
   'from-orange-500 to-amber-600',
 ];
-import { useContent } from '../context/ContentContext';
-import SEO from '../components/SEO';
-import Animate from '../components/Animate';
 
-const WHY_CARDS = [
-  { icon: Clock,   title: 'Flexible Schedule',     desc: 'Set your own hours and manage your own caseload. Work as much or as little as fits your life.' },
-  { icon: MapPin,  title: 'Statewide Reach',        desc: 'Serve patients across Texas with opportunities in both urban and rural communities.' },
-  { icon: Users,   title: 'Supportive Network',     desc: 'Join a community of like-minded clinicians with a dedicated admin team handling logistics.' },
-  { icon: Award,   title: 'Competitive Pay',        desc: 'Among the best per-visit rates in Texas home health, paid promptly and transparently.' },
+// Static icons for the 4 why-cards (not stored in DB)
+const WHY_ICONS = [Clock, MapPin, Users, Award];
+
+const DEFAULT_WHY_CARDS = [
+  { title: 'Flexible Schedule',  desc: 'Set your own hours and manage your own caseload. Work as much or as little as fits your life.' },
+  { title: 'Statewide Reach',    desc: 'Serve patients across Texas with opportunities in both urban and rural communities.' },
+  { title: 'Supportive Network', desc: 'Join a community of like-minded clinicians with a dedicated admin team handling logistics.' },
+  { title: 'Competitive Pay',    desc: 'Among the best per-visit rates in Texas home health, paid promptly and transparently.' },
 ];
 
 export default function CareersPage() {
@@ -23,6 +26,7 @@ export default function CareersPage() {
   if (loading) return <div className="h-96 animate-pulse bg-blue-50" />;
 
   const employment = content.employment || {};
+  const whyCards   = (content.careers?.whyCards) || DEFAULT_WHY_CARDS;
 
   return (
     <>
@@ -69,15 +73,18 @@ export default function CareersPage() {
             </p>
           </Animate>
           <Animate stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {WHY_CARDS.map(({ icon: Icon, title, desc }, i) => (
-              <div key={title} className="anim-fade-up bg-white rounded-2xl p-8 border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all flex flex-col items-center text-center">
-                <div className={`w-16 h-16 bg-gradient-to-br ${CARD_GRADIENTS[i % CARD_GRADIENTS.length]} rounded-2xl flex items-center justify-center mb-5 shadow-md`}>
-                  <Icon size={30} className="text-white" />
+            {whyCards.map(({ title, desc }, i) => {
+              const Icon = WHY_ICONS[i % WHY_ICONS.length];
+              return (
+                <div key={i} className="anim-fade-up bg-white rounded-2xl p-8 border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all flex flex-col items-center text-center">
+                  <div className={`w-16 h-16 bg-gradient-to-br ${CARD_GRADIENTS[i % CARD_GRADIENTS.length]} rounded-2xl flex items-center justify-center mb-5 shadow-md`}>
+                    <Icon size={30} className="text-white" />
+                  </div>
+                  <h3 className="card-title mb-2">{title}</h3>
+                  <p className="card-body">{desc}</p>
                 </div>
-                <h3 className="card-title mb-2">{title}</h3>
-                <p className="card-body">{desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </Animate>
         </div>
       </section>
