@@ -114,7 +114,7 @@ export default function CareersPage() {
                       <span className="text-sm font-bold text-purple-800 bg-purple-50 border border-purple-100 px-3 py-1.5 rounded-full">{c.rate}</span>
                     </div>
                   ))}
-                  <p className="text-xs text-gray-400 pt-4">
+                  <p className="text-sm text-gray-500 pt-4">
                     Rates are per-visit and may vary based on location, discipline, and case complexity. Contact us for details.
                   </p>
                 </div>
