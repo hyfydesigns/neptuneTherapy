@@ -152,7 +152,7 @@ async function sendContactConfirmation({ name, email, message }) {
   const body = `
     <h2 style="margin:0 0 6px;font-size:20px;color:#1e293b;">Thank You, ${firstName}!</h2>
     <p style="margin:0 0 20px;color:#64748b;font-size:15px;line-height:1.7;">
-      We've received your message and want you to know it's in good hands. A member of our team will review it and get back to you <strong style="color:#1e293b;">within 24 hours</strong>.
+      We've received your message and want you to know it's in good hands. A member of our team will review it and get back to you <strong style="color:#1e293b;">within 48 hours</strong>.
     </p>
     <div style="background:#eff8ff;border:1px solid #bfe3fe;border-radius:12px;padding:20px 24px;margin-bottom:24px;">
       <p style="margin:0 0 10px;font-size:13px;font-weight:700;color:#1a5dd8;text-transform:uppercase;letter-spacing:0.05em;">Your message</p>
@@ -185,13 +185,13 @@ async function sendApplicationConfirmation(app) {
   const body = `
     <h2 style="margin:0 0 6px;font-size:20px;color:#1e293b;">Thank You, ${app.first_name}!</h2>
     <p style="margin:0 0 20px;color:#64748b;font-size:15px;line-height:1.7;">
-      We've received your application for the <strong style="color:#1e293b;">${app.position}</strong> position at ${SITE_NAME} — and we're excited to learn more about you. Our team will review your credentials and reach back out to you <strong style="color:#1e293b;">within 24 hours</strong>.
+      We've received your application for the <strong style="color:#1e293b;">${app.position}</strong> position at ${SITE_NAME} — and we're excited to learn more about you. Our team will review your credentials and reach back out to you <strong style="color:#1e293b;">within 2–3 business days</strong>.
     </p>
     <div style="background:#eff8ff;border:1px solid #bfe3fe;border-radius:12px;padding:20px 24px;margin-bottom:24px;">
       <p style="margin:0 0 12px;font-size:13px;font-weight:700;color:#1a5dd8;text-transform:uppercase;letter-spacing:0.05em;">What happens next?</p>
       <ol style="margin:0;padding-left:18px;color:#1e293b;font-size:14px;line-height:1.9;">
         <li>Our team reviews your credentials and experience</li>
-        <li>We'll reach out within 24 hours to follow up</li>
+        <li>We'll reach out within 2–3 business days to follow up</li>
         <li>If selected, we'll schedule a brief introductory call</li>
         <li>Onboarding and your first patient assignments</li>
       </ol>
