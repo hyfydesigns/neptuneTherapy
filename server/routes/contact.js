@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const db = require('../db');
 const auth = require('../middleware/auth');
-const { sendContactNotification } = require('../mailer');
+const { sendContactNotification, sendContactConfirmation } = require('../mailer');
 
 router.post('/', async (req, res) => {
   const { name, email, message } = req.body;
@@ -13,9 +13,13 @@ router.post('/', async (req, res) => {
     'INSERT INTO contact_submissions (name, email, message) VALUES (?, ?, ?)'
   ).run(name.trim(), email.trim(), message.trim());
 
-  // Send email notification (non-blocking — form succeeds even if email fails)
-  sendContactNotification({ name: name.trim(), email: email.trim(), message: message.trim() })
-    .catch(err => console.error('Contact email error:', err.message));
+  const payload = { name: name.trim(), email: email.trim(), message: message.trim() };
+
+  // Fire both emails in parallel, non-blocking — form succeeds even if email fails
+  Promise.all([
+    sendContactNotification(payload).catch(err => console.error('Contact notification error:', err.message)),
+    sendContactConfirmation(payload).catch(err => console.error('Contact confirmation error:', err.message)),
+  ]);
 
   res.json({ message: 'Message received. We will be in touch soon!' });
 });

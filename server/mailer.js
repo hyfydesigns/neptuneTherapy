@@ -143,6 +143,40 @@ async function sendApplicationNotification(app) {
   console.log(`✉️  Application notification sent to ${NOTIFY_EMAIL}`);
 }
 
+// ─── Contact Confirmation (to sender) ────────────────────────────────────────
+async function sendContactConfirmation({ name, email, message }) {
+  const resend = getResend();
+  if (!resend) return logSkipped('contact confirmation');
+
+  const firstName = name.trim().split(' ')[0];
+  const body = `
+    <h2 style="margin:0 0 6px;font-size:20px;color:#1e293b;">Thank You, ${firstName}!</h2>
+    <p style="margin:0 0 20px;color:#64748b;font-size:15px;line-height:1.7;">
+      We've received your message and want you to know it's in good hands. A member of our team will review it and get back to you <strong style="color:#1e293b;">within 24 hours</strong>.
+    </p>
+    <div style="background:#eff8ff;border:1px solid #bfe3fe;border-radius:12px;padding:20px 24px;margin-bottom:24px;">
+      <p style="margin:0 0 10px;font-size:13px;font-weight:700;color:#1a5dd8;text-transform:uppercase;letter-spacing:0.05em;">Your message</p>
+      <p style="margin:0;font-size:14px;color:#1e293b;line-height:1.7;white-space:pre-wrap;">${message}</p>
+    </div>
+    <p style="margin:0 0 20px;color:#64748b;font-size:14px;">
+      If your matter is urgent, feel free to reach us directly at
+      <a href="mailto:${NOTIFY_EMAIL}" style="color:${BRAND_COLOR};text-decoration:none;">${NOTIFY_EMAIL}</a>
+      or call <strong>(346) 630-0084</strong>.
+    </p>
+    <p style="margin:0;color:#64748b;font-size:14px;">
+      Thank you for reaching out — we look forward to connecting with you.
+    </p>`;
+
+  await resend.emails.send({
+    from: FROM_EMAIL,
+    to: email,
+    subject: `We received your message — ${SITE_NAME}`,
+    html: wrap('Message Received', body),
+  });
+
+  console.log(`✉️  Contact confirmation sent to ${email}`);
+}
+
 // ─── Application Confirmation (to applicant) ──────────────────────────────────
 async function sendApplicationConfirmation(app) {
   const resend = getResend();
@@ -150,22 +184,25 @@ async function sendApplicationConfirmation(app) {
 
   const body = `
     <h2 style="margin:0 0 6px;font-size:20px;color:#1e293b;">Thank You, ${app.first_name}!</h2>
-    <p style="margin:0 0 24px;color:#64748b;font-size:15px;line-height:1.7;">
-      We've received your application for the <strong>${app.position}</strong> position at ${SITE_NAME}. Our team will review your details and reach out to you shortly.
+    <p style="margin:0 0 20px;color:#64748b;font-size:15px;line-height:1.7;">
+      We've received your application for the <strong style="color:#1e293b;">${app.position}</strong> position at ${SITE_NAME} — and we're excited to learn more about you. Our team will review your credentials and reach back out to you <strong style="color:#1e293b;">within 24 hours</strong>.
     </p>
     <div style="background:#eff8ff;border:1px solid #bfe3fe;border-radius:12px;padding:20px 24px;margin-bottom:24px;">
       <p style="margin:0 0 12px;font-size:13px;font-weight:700;color:#1a5dd8;text-transform:uppercase;letter-spacing:0.05em;">What happens next?</p>
       <ol style="margin:0;padding-left:18px;color:#1e293b;font-size:14px;line-height:1.9;">
         <li>Our team reviews your credentials and experience</li>
-        <li>We'll contact you within 2–3 business days</li>
-        <li>If selected, we'll schedule an introductory call</li>
+        <li>We'll reach out within 24 hours to follow up</li>
+        <li>If selected, we'll schedule a brief introductory call</li>
         <li>Onboarding and your first patient assignments</li>
       </ol>
     </div>
     <p style="margin:0 0 20px;color:#64748b;font-size:14px;">
-      In the meantime, feel free to reach out at
+      If you have any questions in the meantime, feel free to reach us at
       <a href="mailto:${NOTIFY_EMAIL}" style="color:${BRAND_COLOR};text-decoration:none;">${NOTIFY_EMAIL}</a>
-      or call us at <strong>(346) 630-0084</strong>.
+      or call <strong>(346) 630-0084</strong>.
+    </p>
+    <p style="margin:0;color:#64748b;font-size:14px;">
+      Thank you for your interest in joining the Neptune Therapy network — we look forward to speaking with you soon.
     </p>`;
 
   await resend.emails.send({
@@ -175,11 +212,11 @@ async function sendApplicationConfirmation(app) {
     html: wrap('Application Received', body),
   });
 
-  console.log(`✉️  Confirmation sent to ${app.email}`);
+  console.log(`✉️  Application confirmation sent to ${app.email}`);
 }
 
 function logSkipped(type) {
   console.log(`⚠️  Email skipped (${type}): RESEND_API_KEY not configured.`);
 }
 
-module.exports = { sendContactNotification, sendApplicationNotification, sendApplicationConfirmation };
+module.exports = { sendContactNotification, sendContactConfirmation, sendApplicationNotification, sendApplicationConfirmation };
