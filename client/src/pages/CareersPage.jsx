@@ -123,12 +123,14 @@ export default function CareersPage() {
 
             {/* Perks card */}
             <Animate type="fade-right">
-              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 h-full">
-                <div className="flex items-center gap-2 mb-6">
-                  <Star size={20} className="text-yellow-500" />
-                  <h3 className="text-xl card-title">Perks & Benefits</h3>
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden h-full">
+                <div className="bg-gradient-to-r from-blue-600 to-neptune-700 px-6 py-5 flex items-center gap-3">
+                  <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                    <Star size={22} className="text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Perks & Benefits</h3>
                 </div>
-                <ul className="space-y-3">
+                <ul className="space-y-3 px-6 py-6">
                   {(employment.perks || []).map((perk, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <CheckCircle size={17} className="text-green-500 mt-0.5 shrink-0" />
