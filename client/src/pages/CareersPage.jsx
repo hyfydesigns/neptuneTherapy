@@ -101,7 +101,7 @@ export default function CareersPage() {
             {/* Compensation card */}
             <Animate type="fade-left">
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden h-full">
-                <div className="bg-gradient-to-r from-amber-500 to-amber-400 px-6 py-5 flex items-center gap-3">
+                <div className="bg-gradient-to-r from-violet-700 to-purple-900 px-6 py-5 flex items-center gap-3">
                   <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
                     <DollarSign size={22} className="text-white" />
                   </div>
@@ -111,7 +111,7 @@ export default function CareersPage() {
                   {(employment.compensation || []).map((c, i) => (
                     <div key={i} className="flex justify-between items-center py-4 border-b border-gray-50 last:border-0">
                       <span className="text-gray-700 font-semibold">{c.role}</span>
-                      <span className="text-sm font-bold text-amber-700 bg-amber-50 border border-amber-100 px-3 py-1.5 rounded-full">{c.rate}</span>
+                      <span className="text-sm font-bold text-purple-800 bg-purple-50 border border-purple-100 px-3 py-1.5 rounded-full">{c.rate}</span>
                     </div>
                   ))}
                   <p className="text-xs text-gray-400 pt-4">
