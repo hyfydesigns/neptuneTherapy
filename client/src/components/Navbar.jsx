@@ -37,7 +37,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link to="/" className="shrink-0">
-            <img src="/images/logo-cropped.png" alt="Neptune Therapy" className="h-16 w-auto" />
+            <img src="/images/logo.png" alt="Neptune Therapy" className="h-16 w-auto" />
           </Link>
 
           {/* Desktop nav */}
