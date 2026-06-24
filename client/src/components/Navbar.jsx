@@ -33,17 +33,11 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 shrink-0">
-            <div className="w-9 h-9 rounded-full bg-blue-700 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">N</span>
-            </div>
-            <span className="font-bold text-gray-900 text-lg leading-tight">
-              Neptune<br />
-              <span className="text-blue-700 text-xs font-semibold tracking-wide uppercase">Therapy</span>
-            </span>
+          <Link to="/" className="shrink-0">
+            <img src="/images/logo-cropped.png" alt="Neptune Therapy" className="h-16 w-auto" />
           </Link>
 
           {/* Desktop nav */}
